@@ -1,0 +1,45 @@
+.comic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Adjusted grid-template-columns */
+    gap: 10px;
+    /* Gap between grid items */
+    border: 2px solid #000;
+    /* Border around the grid container */
+    padding: 10px;
+    /* Padding inside the grid container */
+    max-width: 650px;
+    /* Set a max-width for the container */
+    margin: 0 auto;
+    /* Center the container */
+}
+
+.comic-panel {
+    width: 100%;
+    /* Set the width of each grid box to 100% */
+    height: 300px;
+    /* Set the height of each grid box to 300px */
+    border: 1px solid #000;
+    /* Border around each grid item */
+    overflow: hidden;
+    /* Ensure images fill the entire grid item */
+}
+
+img {
+    width: 100%;
+    /* Make the image fill the entire grid item */
+    height: 100%;
+    /* Make the image fill the entire grid item */
+    object-fit: cover;
+    /* Ensure the image maintains its aspect ratio while covering the grid item */
+}
+
+.empty-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #777;
+    border: 1px solid #000;
+    /* Border around empty grid items */
+}

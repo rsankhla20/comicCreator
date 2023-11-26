@@ -8,17 +8,24 @@ import ComicGrid from "./components/ComicGrid";
 
 function App() {
   const [showForm, setShowForm] = useState(true);
-  const [comicImages, setComicImages] = useState([]);
+  const [comicImages, setComicImages] = useState(Array(10).fill(null));
 
-  const handleGenerate = (imageData) => {
-    // Handle image data as needed
+  // const handleFinish = async (index, imageArray) => {
+  //   const updatedImages = [...comicImages];
+  //   updatedImages[index] = imageArray;
+
+  //   setComicImages(updatedImages);
+  // };
+
+  const handleFinish = async (index, imageArray) => {
+    setComicImages((prevImages) => {
+      const updatedImages = [...prevImages];
+      updatedImages[index] = imageArray;
+      return updatedImages;
+    });
   };
 
   const handlePublish = () => {
-    setComicImages([
-      ...comicImages,
-      ...Array.from({ length: 10 }, (_, index) => `fakeImageUrl${index}`),
-    ]);
     setShowForm(false);
   };
 
@@ -32,23 +39,19 @@ function App() {
         <div className="container">
           <span className="navbar-brand">Comic Creator</span>
           {showForm ? (
-            <button
-              className="btn btn-light"
-              onClick={handlePublish}
-              disabled={!comicImages.length}
-            >
-              {comicImages.length ? "Publish" : "Generate and Publish"}
+            <button className="btn btn-light" onClick={handlePublish}>
+              Publish
             </button>
           ) : (
             <button className="btn btn-light" onClick={handleGoHome}>
-              Home
+              Create
             </button>
           )}
         </div>
       </nav>
       <div className="container">
         {showForm ? (
-          <ComicForm onGenerate={handleGenerate} onPublish={handlePublish} />
+          <ComicForm onFinishing={handleFinish} />
         ) : (
           <ComicGrid images={comicImages} />
         )}
