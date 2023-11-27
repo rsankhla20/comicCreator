@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 import PanelForm from "./PanelForm";
 
-const ComicForm = ({ onFinishing }) => {
+const ComicForm = ({ onFinishing, img_array }) => {
   const [panelTexts, setPanelTexts] = useState(Array(10).fill(""));
-  const [panelImages, setPanelImages] = useState(Array(10).fill(null));
+  const [panelImages, setPanelImages] = useState(img_array);
   const [loading, setLoading] = useState(Array(10).fill(false));
   const [activeTab, setActiveTab] = useState(0);
 
